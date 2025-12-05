@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -29,12 +29,7 @@ export default function DashboardPage() {
     category: '',
   });
 
-  useEffect(() => {
-    checkAuth();
-    loadTickets();
-  }, []);
-
-  const checkAuth = async () => {
+  const checkAuth = useCallback(async () => {
     try {
       const response = await fetch('/api/auth/me');
       if (!response.ok) {
@@ -46,9 +41,9 @@ export default function DashboardPage() {
     } catch (error) {
       router.push('/login');
     }
-  };
+  }, [router]);
 
-  const loadTickets = async () => {
+  const loadTickets = useCallback(async () => {
     try {
       const response = await fetch('/api/tickets');
       if (response.ok) {
@@ -60,7 +55,12 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    checkAuth();
+    loadTickets();
+  }, [checkAuth, loadTickets]);
 
   const handleCreateTicket = async (e: React.FormEvent) => {
     e.preventDefault();

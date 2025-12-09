@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
     setLoading(true);
 
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify(formData),
       });
@@ -29,31 +29,32 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || "Login failed");
+        setError(data.error || 'Login failed');
         return;
       }
 
-      router.push("/dashboard");
+      router.push('/dashboard');
     } catch (error: any) {
-      setError("An error occurred. Please try again.");
+      setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="container" style={{ maxWidth: "500px" }}>
+    <div className="container" style={{ maxWidth: '500px' }}>
+      <p>Welcome to our simple ticket management system</p>
       <h1>Login</h1>
-      <div className="card" style={{ marginTop: "2rem" }}>
+      <div className="card" style={{ marginTop: '2rem' }}>
         <form onSubmit={handleSubmit}>
           {error && (
             <div
               style={{
-                color: "red",
-                marginBottom: "1rem",
-                padding: "0.75rem",
-                background: "#fee",
-                borderRadius: "0.5rem",
+                color: 'red',
+                marginBottom: '1rem',
+                padding: '0.75rem',
+                background: '#fee',
+                borderRadius: '0.5rem',
               }}
             >
               {error}
@@ -90,15 +91,15 @@ export default function LoginPage() {
             type="submit"
             className="btn btn-primary"
             disabled={loading}
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
-        <p style={{ marginTop: "1rem", textAlign: "center" }}>
-          Don&apos;t have an account?{" "}
-          <Link href="/register" style={{ color: "#0070f3" }}>
+        <p style={{ marginTop: '1rem', textAlign: 'center' }}>
+          Don&apos;t have an account?{' '}
+          <Link href="/register" style={{ color: '#0070f3' }}>
             Register
           </Link>
         </p>

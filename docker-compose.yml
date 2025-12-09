@@ -24,7 +24,7 @@ services:
       - "3000:3000"
     environment:
       MONGODB_URI: mongodb://mongodb:27017/helpdesk
-      JWT_SECRET: ${JWT_SECRET:-your-secret-key-change-in-production}
+      JWT_SECRET: secret-key
       NODE_ENV: production
     depends_on:
       - mongodb
@@ -37,4 +37,3 @@ volumes:
 networks:
   helpdesk-network:
     driver: bridge
-

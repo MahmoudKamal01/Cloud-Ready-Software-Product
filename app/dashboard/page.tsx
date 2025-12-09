@@ -31,7 +31,9 @@ export default function DashboardPage() {
 
   const checkAuth = useCallback(async () => {
     try {
-      const response = await fetch('/api/auth/me');
+      const response = await fetch('/api/auth/me', {
+        credentials: 'include',
+      });
       if (!response.ok) {
         router.push('/login');
         return;
@@ -45,7 +47,9 @@ export default function DashboardPage() {
 
   const loadTickets = useCallback(async () => {
     try {
-      const response = await fetch('/api/tickets');
+      const response = await fetch('/api/tickets', {
+        credentials: 'include',
+      });
       if (response.ok) {
         const data = await response.json();
         setTickets(data.tickets || []);
@@ -68,6 +72,7 @@ export default function DashboardPage() {
       const response = await fetch('/api/tickets', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(formData),
       });
 
@@ -86,6 +91,7 @@ export default function DashboardPage() {
       const response = await fetch(`/api/tickets/${ticketId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ status: newStatus }),
       });
 

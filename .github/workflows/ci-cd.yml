@@ -163,10 +163,10 @@ jobs:
             
             # Health check
             sleep 10
-            curl -f http://localhost:3000/api/auth/me || exit 1
+            curl -f http://localhost:3000/api/health || exit 1
           EOF
 
       - name: Verify deployment
         run: |
           sleep 5
-          curl -f https://${{ secrets.EC2_HOST }}/api/auth/me || echo "Health check endpoint not accessible"
+          curl -f http://${{ secrets.EC2_HOST }}:3000/api/health || echo "Health check endpoint not accessible"

@@ -61,3 +61,4 @@ TicketSchema.index({ assignedTo: 1, status: 1 });
 
 export default mongoose.models.Ticket || mongoose.model<ITicket>('Ticket', TicketSchema);
 
+

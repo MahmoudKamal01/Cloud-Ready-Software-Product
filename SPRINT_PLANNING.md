@@ -3,11 +3,13 @@
 ## Sprint 1: Foundation (Week 2)
 
 ### Sprint Goal
+
 Establish core infrastructure including database setup, authentication system, and basic UI components.
 
 ### User Stories
 
 #### US-001: Database Setup
+
 **Story Points**: 3  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -15,6 +17,7 @@ Establish core infrastructure including database setup, authentication system, a
 **Description**: Set up MongoDB database connection and create User and Ticket models.
 
 **Tasks**:
+
 - [x] Create MongoDB connection utility
 - [x] Design User schema with authentication fields
 - [x] Design Ticket schema with relationships
@@ -22,6 +25,7 @@ Establish core infrastructure including database setup, authentication system, a
 - [x] Add database indexes for performance
 
 **Acceptance Criteria**:
+
 - MongoDB connection established successfully
 - User model with email, password, name, role fields
 - Ticket model with title, description, status, priority, category fields
@@ -31,6 +35,7 @@ Establish core infrastructure including database setup, authentication system, a
 ---
 
 #### US-002: User Registration
+
 **Story Points**: 5  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -38,6 +43,7 @@ Establish core infrastructure including database setup, authentication system, a
 **Description**: Implement user registration functionality with validation and password hashing.
 
 **Tasks**:
+
 - [x] Create registration API endpoint
 - [x] Implement input validation with Zod
 - [x] Add password hashing with bcrypt
@@ -46,6 +52,7 @@ Establish core infrastructure including database setup, authentication system, a
 - [x] Create registration UI form
 
 **Acceptance Criteria**:
+
 - Registration form with email, password, and name fields
 - Email format validation
 - Email uniqueness check
@@ -57,6 +64,7 @@ Establish core infrastructure including database setup, authentication system, a
 ---
 
 #### US-003: User Login
+
 **Story Points**: 5  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -64,6 +72,7 @@ Establish core infrastructure including database setup, authentication system, a
 **Description**: Implement user login functionality with JWT authentication.
 
 **Tasks**:
+
 - [x] Create login API endpoint
 - [x] Implement password verification
 - [x] Generate JWT token on successful login
@@ -72,6 +81,7 @@ Establish core infrastructure including database setup, authentication system, a
 - [x] Implement session management
 
 **Acceptance Criteria**:
+
 - Login form with email and password fields
 - Password verification against hashed password
 - JWT token generation on successful login
@@ -82,6 +92,7 @@ Establish core infrastructure including database setup, authentication system, a
 ---
 
 ### Sprint 1 Metrics
+
 - **Planned Story Points**: 13
 - **Completed Story Points**: 13
 - **Sprint Velocity**: 13 points
@@ -92,11 +103,13 @@ Establish core infrastructure including database setup, authentication system, a
 ## Sprint 2: Core Features (Week 3)
 
 ### Sprint Goal
+
 Implement ticket management functionality including CRUD operations and role-based access control.
 
 ### User Stories
 
 #### US-004: Ticket Creation
+
 **Story Points**: 5  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -104,6 +117,7 @@ Implement ticket management functionality including CRUD operations and role-bas
 **Description**: Allow users to create support tickets with all necessary information.
 
 **Tasks**:
+
 - [x] Create ticket creation API endpoint
 - [x] Implement input validation
 - [x] Associate ticket with creating user
@@ -111,6 +125,7 @@ Implement ticket management functionality including CRUD operations and role-bas
 - [x] Add success/error handling
 
 **Acceptance Criteria**:
+
 - Ticket form with title, description, category, priority fields
 - Form validation (required fields, max lengths)
 - Ticket stored in database with user association
@@ -121,6 +136,7 @@ Implement ticket management functionality including CRUD operations and role-bas
 ---
 
 #### US-005: Ticket Viewing
+
 **Story Points**: 3  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -128,6 +144,7 @@ Implement ticket management functionality including CRUD operations and role-bas
 **Description**: Display tickets to users based on their role and permissions.
 
 **Tasks**:
+
 - [x] Create ticket list API endpoint
 - [x] Implement role-based filtering
 - [x] Add query parameters for filtering
@@ -135,6 +152,7 @@ Implement ticket management functionality including CRUD operations and role-bas
 - [x] Display ticket status and priority badges
 
 **Acceptance Criteria**:
+
 - Users see only their own tickets
 - Agents see tickets assigned to them or unassigned
 - Admins see all tickets
@@ -145,6 +163,7 @@ Implement ticket management functionality including CRUD operations and role-bas
 ---
 
 #### US-006: Ticket Status Updates
+
 **Story Points**: 5  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -152,6 +171,7 @@ Implement ticket management functionality including CRUD operations and role-bas
 **Description**: Allow agents and admins to update ticket status.
 
 **Tasks**:
+
 - [x] Create ticket update API endpoint
 - [x] Implement permission checks
 - [x] Add status dropdown in UI
@@ -159,6 +179,7 @@ Implement ticket management functionality including CRUD operations and role-bas
 - [x] Update ticket in database
 
 **Acceptance Criteria**:
+
 - Only agents and admins can update status
 - Status dropdown visible for authorized users
 - Status options: Open, In Progress, Resolved, Closed
@@ -168,6 +189,7 @@ Implement ticket management functionality including CRUD operations and role-bas
 ---
 
 #### US-007: Ticket Assignment
+
 **Story Points**: 3  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -175,12 +197,14 @@ Implement ticket management functionality including CRUD operations and role-bas
 **Description**: Allow agents and admins to assign tickets to agents.
 
 **Tasks**:
+
 - [x] Add assignment field to ticket update endpoint
 - [x] Implement permission checks
 - [x] Add assignment UI (future enhancement)
 - [x] Update ticket assignment in database
 
 **Acceptance Criteria**:
+
 - Only agents and admins can assign tickets
 - Tickets can be assigned to agents
 - Assignment reflected in ticket list
@@ -189,6 +213,7 @@ Implement ticket management functionality including CRUD operations and role-bas
 ---
 
 ### Sprint 2 Metrics
+
 - **Planned Story Points**: 16
 - **Completed Story Points**: 16
 - **Sprint Velocity**: 16 points
@@ -199,11 +224,13 @@ Implement ticket management functionality including CRUD operations and role-bas
 ## Sprint 3: Quality Assurance (Week 4)
 
 ### Sprint Goal
+
 Ensure code quality through comprehensive testing, code reviews, and refactoring.
 
 ### User Stories
 
 #### US-008: Unit Testing
+
 **Story Points**: 5  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -211,6 +238,7 @@ Ensure code quality through comprehensive testing, code reviews, and refactoring
 **Description**: Implement unit tests for critical functions and utilities.
 
 **Tasks**:
+
 - [x] Set up Jest testing framework
 - [x] Write tests for authentication utilities
 - [x] Write tests for validation functions
@@ -218,6 +246,7 @@ Ensure code quality through comprehensive testing, code reviews, and refactoring
 - [x] Achieve >80% code coverage
 
 **Acceptance Criteria**:
+
 - Jest configured and working
 - All utility functions have unit tests
 - Code coverage >80%
@@ -227,6 +256,7 @@ Ensure code quality through comprehensive testing, code reviews, and refactoring
 ---
 
 #### US-009: Integration Testing
+
 **Story Points**: 5  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -234,6 +264,7 @@ Ensure code quality through comprehensive testing, code reviews, and refactoring
 **Description**: Implement integration tests for API endpoints and database interactions.
 
 **Tasks**:
+
 - [x] Write tests for authentication endpoints
 - [x] Write tests for ticket endpoints
 - [x] Test database interactions
@@ -241,6 +272,7 @@ Ensure code quality through comprehensive testing, code reviews, and refactoring
 - [x] Test permission checks
 
 **Acceptance Criteria**:
+
 - All API endpoints have integration tests
 - Database operations tested
 - Authentication flows tested
@@ -250,6 +282,7 @@ Ensure code quality through comprehensive testing, code reviews, and refactoring
 ---
 
 #### US-010: Code Quality
+
 **Story Points**: 3  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -257,6 +290,7 @@ Ensure code quality through comprehensive testing, code reviews, and refactoring
 **Description**: Establish code quality standards and review processes.
 
 **Tasks**:
+
 - [x] Configure ESLint
 - [x] Set up code formatting rules
 - [x] Conduct code reviews
@@ -264,6 +298,7 @@ Ensure code quality through comprehensive testing, code reviews, and refactoring
 - [x] Document coding standards
 
 **Acceptance Criteria**:
+
 - ESLint configured and passing
 - Code follows style guidelines
 - Code reviews completed
@@ -273,6 +308,7 @@ Ensure code quality through comprehensive testing, code reviews, and refactoring
 ---
 
 ### Sprint 3 Metrics
+
 - **Planned Story Points**: 13
 - **Completed Story Points**: 13
 - **Sprint Velocity**: 13 points
@@ -283,11 +319,13 @@ Ensure code quality through comprehensive testing, code reviews, and refactoring
 ## Sprint 4: DevOps & Deployment (Week 5)
 
 ### Sprint Goal
+
 Enable automated deployment through containerization and CI/CD pipeline setup.
 
 ### User Stories
 
 #### US-011: Docker Configuration
+
 **Story Points**: 5  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -295,6 +333,7 @@ Enable automated deployment through containerization and CI/CD pipeline setup.
 **Description**: Containerize the application using Docker and Docker Compose.
 
 **Tasks**:
+
 - [x] Create Dockerfile with multi-stage build
 - [x] Create docker-compose.yml
 - [x] Configure MongoDB service
@@ -302,6 +341,7 @@ Enable automated deployment through containerization and CI/CD pipeline setup.
 - [x] Test Docker build and run
 
 **Acceptance Criteria**:
+
 - Dockerfile created with multi-stage build
 - docker-compose.yml configured
 - MongoDB service running in container
@@ -312,6 +352,7 @@ Enable automated deployment through containerization and CI/CD pipeline setup.
 ---
 
 #### US-012: CI/CD Pipeline
+
 **Story Points**: 8  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -319,6 +360,7 @@ Enable automated deployment through containerization and CI/CD pipeline setup.
 **Description**: Set up automated CI/CD pipeline using GitHub Actions.
 
 **Tasks**:
+
 - [x] Create GitHub Actions workflow
 - [x] Configure test stage
 - [x] Configure build stage
@@ -327,6 +369,7 @@ Enable automated deployment through containerization and CI/CD pipeline setup.
 - [x] Test pipeline execution
 
 **Acceptance Criteria**:
+
 - GitHub Actions workflow created
 - Tests run automatically on push/PR
 - Docker image built automatically
@@ -337,6 +380,7 @@ Enable automated deployment through containerization and CI/CD pipeline setup.
 ---
 
 #### US-013: Environment Configuration
+
 **Story Points**: 3  
 **Priority**: P0  
 **Status**: ✅ Completed
@@ -344,12 +388,14 @@ Enable automated deployment through containerization and CI/CD pipeline setup.
 **Description**: Configure application for different environments.
 
 **Tasks**:
+
 - [x] Create .env.example file
 - [x] Document environment variables
 - [x] Configure production settings
 - [x] Update documentation
 
 **Acceptance Criteria**:
+
 - .env.example file created
 - All environment variables documented
 - Production configuration ready
@@ -358,6 +404,7 @@ Enable automated deployment through containerization and CI/CD pipeline setup.
 ---
 
 ### Sprint 4 Metrics
+
 - **Planned Story Points**: 16
 - **Completed Story Points**: 16
 - **Sprint Velocity**: 16 points
@@ -371,4 +418,3 @@ Enable automated deployment through containerization and CI/CD pipeline setup.
 - **Completed Story Points**: 58
 - **Average Sprint Velocity**: 14.5 points/sprint
 - **Project Completion**: 100%
-

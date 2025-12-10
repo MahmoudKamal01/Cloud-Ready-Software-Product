@@ -75,7 +75,7 @@ export default function LoginPage() {
               marginBottom: '0.5rem',
             }}
           >
-            Welcome Back
+            Welcome Back, User!
           </h1>
           <p style={{ color: '#64748b', fontSize: '0.875rem' }}>
             Sign in to manage your support tickets

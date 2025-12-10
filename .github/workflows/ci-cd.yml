@@ -7,7 +7,7 @@ on:
     branches: [main, develop]
 
 env:
-  NODE_VERSION: "20"
+  NODE_VERSION: '20'
 
 jobs:
   test:
@@ -33,7 +33,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -125,45 +125,45 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Add EC2 instance to known hosts
+      - name: Install sshpass
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ec2_key.pem
-          chmod 600 ~/.ssh/ec2_key.pem
-          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+          sudo apt-get update
+          sudo apt-get install -y sshpass
 
-      - name: Deploy to EC2
+      - name: Deploy to EC2 with password
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: |
-          ssh -i ~/.ssh/ec2_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-            # Update application
-            cd ~/helpdesk-platform || git clone https://github.com/${{ github.repository }}.git ~/helpdesk-platform
-            cd ~/helpdesk-platform
-            git pull origin main
-            
-            # Login to Docker Hub
-            echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-            
-            # Pull latest image
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/helpdesk-platform:latest
-            
-            # Stop existing containers
-            docker-compose down || true
-            
-            # Start new containers
-            MONGODB_URI="${{ secrets.MONGODB_URI }}" \
-            JWT_SECRET="${{ secrets.JWT_SECRET }}" \
-            docker-compose -f docker-compose.prod.yml up -d
-            
-            # Clean up old images
-            docker image prune -f
-            
-            # Health check
-            sleep 10
-            curl -f http://localhost:3000/api/health || exit 1
+          sshpass -p "${{ secrets.EC2_PASSWORD }}" \
+            ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+              # Update application
+              cd ~/helpdesk-platform || git clone https://github.com/${{ github.repository }}.git ~/helpdesk-platform
+              cd ~/helpdesk-platform
+              git pull origin main
+
+              # Login to Docker Hub
+              echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+              # Pull latest image
+              docker pull ${{ secrets.DOCKERHUB_USERNAME }}/helpdesk-platform:latest
+
+              # Stop existing containers
+              docker-compose down || true
+
+              # Start new containers
+              MONGODB_URI="${{ secrets.MONGODB_URI }}" \
+              JWT_SECRET="${{ secrets.JWT_SECRET }}" \
+              docker-compose -f docker-compose.prod.yml up -d
+
+              # Clean up old images
+              docker image prune -f
+
+              # Health check
+              sleep 10
+              curl -f http://localhost:3000/api/health || exit 1
           EOF
 
       - name: Verify deployment
